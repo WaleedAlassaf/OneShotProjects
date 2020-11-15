@@ -10,6 +10,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         imageView.layer.cornerRadius = 20.0
         imageView.layer.masksToBounds = true
         
@@ -27,14 +28,15 @@ class ViewController: UIViewController {
         
         let initial = layer.transform
         
-        let angle = CGFloat.pi
+        let angle = CGFloat.pi/2
         let rotateAround = CATransform3DRotate(initial, angle, 0.0, 1.0, 0.0)
-        
+        let rotateAndMoveLeft = CATransform3DTranslate(rotateAround, 0.0, 0.0, -100.0)
+        let rotateAndMoveRight = CATransform3DTranslate(rotateAround, 0.0, 0.0, 100.0)
         animation.values = [
-            initial, rotateAround
+            initial, rotateAround, rotateAndMoveLeft, rotateAndMoveRight, initial
         ]
         
-        animation.duration = 1.0
+        animation.duration = 2.0
         layer.add(animation, forKey: "spin")
         layer.transform = rotateAround
         
