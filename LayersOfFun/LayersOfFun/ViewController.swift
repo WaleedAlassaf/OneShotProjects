@@ -19,15 +19,21 @@ class ViewController: UIViewController {
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         let layer = imageView.layer
-        
-        let animation = CABasicAnimation(keyPath: #keyPath(CALayer.transform))
+        let animation = CAKeyframeAnimation(keyPath: #keyPath(CALayer.transform))
         
         let initial = layer.transform
-        animation.fromValue = initial
+//        animation.fromValue = initial
+        
+        
         
         let angle = CGFloat.pi / 2
+        let scale = CATransform3DScale(initial, 0.5, 0.5, 0.5)
         let rotateAround = CATransform3DRotate(initial, angle, 0.0, 0.0, 1.0)
-        animation.toValue = rotateAround
+//        animation.toValue = rotateAround
+        
+        animation.values = [
+            initial, scale, rotateAround
+        ]
         
         animation.duration = 1.0
 //        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut) //Error here
