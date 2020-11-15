@@ -100,6 +100,7 @@
 				TargetAttributes = {
 					DC9A54C61B0149BA003F0596 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 33933498ZT;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -110,6 +111,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -276,7 +278,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 33933498ZT;
 				INFOPLIST_FILE = LayersOfFun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prop-group.$(PRODUCT_NAME:rfc1034identifier)";
@@ -293,7 +295,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 33933498ZT;
 				INFOPLIST_FILE = LayersOfFun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prop-group.$(PRODUCT_NAME:rfc1034identifier)";

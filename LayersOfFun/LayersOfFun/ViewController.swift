@@ -15,27 +15,53 @@ class ViewController: UIViewController {
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         
-        let layer = imageView.layer
-        let anim = CAKeyframeAnimation(keyPath: "transform")
+//        let layer = imageView.layer
+//        let anim = CAKeyframeAnimation(keyPath: "transform")
         
-        var perspective = CATransform3DIdentity
-        perspective.m34 = -1.0/1000.0
-        layer.transform = perspective
+        if topPin.isActive {
+            imageHeight.constant = imageView.frame.height
+            imageHeight.isActive = true
+            topPin.isActive = false
+        }
+        let params = UISpringTimingParameters(mass: 0.5,
+                                              stiffness: 50.0,
+                                              damping: 1.0,
+                                              initialVelocity: CGVector.zero)
         
-        let txform = layer.transform
-        let angle = CGFloat(Float.pi)
-        let rotTxform = CATransform3DRotate(txform, angle, 0.0, 1.0, 0.0)
-        let rotAndMoveLeft = CATransform3DTranslate(rotTxform, 0.0, 0.0, -100.0)
-        let rotAndMoveRight = CATransform3DTranslate(rotTxform, 0.0, 0.0, 100.0)
-
+        let animator = UIViewPropertyAnimator(duration: 1.0, timingParameters: params)
+        animator.addAnimations {
+            
+            self.imageHeight.constant = 0.0
+            self.view.layoutIfNeeded()
+        }
         
-        anim.values = [txform, rotTxform, rotAndMoveLeft, rotAndMoveRight, txform, txform]
-        anim.duration = 2.0
-        anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        anim.autoreverses = true
-        anim.repeatCount = .infinity
-        layer.add(anim, forKey: "spin")
-        layer.transform = rotTxform
+        
+//        let animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut) {
+//            self.imageHeight.constant = -100
+//            self.view.layoutIfNeeded()
+//        }
+        animator.startAnimation()
+        
+        
+        
+//        var perspective = CATransform3DIdentity
+//        perspective.m34 = -1.0/1000.0
+//        layer.transform = perspective
+//
+//        let txform = layer.transform
+//        let angle = CGFloat(Float.pi)
+//        let rotTxform = CATransform3DRotate(txform, angle, 0.0, 1.0, 0.0)
+//        let rotAndMoveLeft = CATransform3DTranslate(rotTxform, 0.0, 0.0, -100.0)
+//        let rotAndMoveRight = CATransform3DTranslate(rotTxform, 0.0, 0.0, 100.0)
+//
+//
+//        anim.values = [txform, rotTxform, rotAndMoveLeft, rotAndMoveRight, txform, txform]
+//        anim.duration = 2.0
+//        anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+////        anim.autoreverses = true
+//        anim.repeatCount = .infinity
+//        layer.add(anim, forKey: "spin")
+//        layer.transform = rotTxform
         
     }
     
