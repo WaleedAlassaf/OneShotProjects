@@ -21,24 +21,20 @@ class ViewController: UIViewController {
         let layer = imageView.layer
         let animation = CAKeyframeAnimation(keyPath: #keyPath(CALayer.transform))
         
+        var perspective = CATransform3DIdentity
+        perspective.m34 = -1.0/1000.0
+        layer.transform = perspective
+        
         let initial = layer.transform
-//        animation.fromValue = initial
         
-        
-        
-        let angle = CGFloat.pi / 2
-        let scale = CATransform3DScale(initial, 0.5, 0.5, 0.5)
-        let rotateAround = CATransform3DRotate(initial, angle, 0.0, 0.0, 1.0)
-//        animation.toValue = rotateAround
+        let angle = CGFloat.pi
+        let rotateAround = CATransform3DRotate(initial, angle, 0.0, 1.0, 0.0)
         
         animation.values = [
-            initial, scale, rotateAround
+            initial, rotateAround
         ]
         
         animation.duration = 1.0
-//        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut) //Error here
-//        animation.autoreverses = true
-//        animation.repeatCount = Float.infinity
         layer.add(animation, forKey: "spin")
         layer.transform = rotateAround
         
