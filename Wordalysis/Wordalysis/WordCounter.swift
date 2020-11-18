@@ -20,8 +20,8 @@ class WordCounter {
     private var lockedState = Locked(State())
     private(set) var text: Text
     
-    var currentState: State {
-        return lockedState.withLock({ $0 })
+    var currentState: State? {
+        return lockedState.withLock(timeOut: DispatchTime.now() + 10, { $0 })
     }
     
     init(text: Text) {
@@ -53,7 +53,7 @@ class WordCounter {
             (substring, subRange, enclosingRange, stop) in
             guard let substring = substring else { return }
            
-            self.lockedState.withLock ({ state in
+            self.lockedState.withLock (timeOut: DispatchTime.now() + 10, { state in
                 
                 if let count = state.wordList[substring] {
                     let newCount = count + 1

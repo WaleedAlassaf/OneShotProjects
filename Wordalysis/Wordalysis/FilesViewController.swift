@@ -17,7 +17,7 @@ class FilesViewController: UITableViewController {
     
     var totalCount: Int {
         let counts = counters.map { (counter) -> Int in
-            let counter = counter.currentState.totalCount
+            let counter = counter.currentState?.totalCount ?? 0
             return counter
         }
         let total = counts.reduce(0,+)
@@ -49,7 +49,7 @@ class FilesViewController: UITableViewController {
         for indexPath in visibleIndexPath {
             guard let cell = tableView.cellForRow(at: indexPath) else { continue }
             let counter = counters[indexPath.row]
-            let count = counter.currentState.totalCount
+            let count = counter.currentState?.totalCount ?? 0
             cell.textLabel?.text = "\(count)"
         }
     }
@@ -120,7 +120,7 @@ class FilesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FileCellID", for: indexPath)
         
         let counter = counters[indexPath.row]
-        let count = counter.currentState.totalCount
+        let count = counter.currentState?.totalCount ?? 0
         cell.textLabel?.text = "\(count)"
         cell.detailTextLabel?.text = counter.text.name
         return cell

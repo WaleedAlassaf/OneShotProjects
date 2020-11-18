@@ -16,8 +16,15 @@ class Locked<Content> {
         self.content = content
     }
     
-    func withLock<Return>(_ workItem: (inout Content) throws -> Return) rethrows -> Return {
-        semaphore.wait()
+    func withLock<Return>(timeOut: DispatchTime = DispatchTime.now() + 10 , _ workItem: (inout Content) throws -> Return) rethrows -> Return? {
+        
+        let timeOutSemaphore = semaphore.wait(timeout: timeOut)
+        if timeOutSemaphore == .timedOut {
+            print("DEBUG: time out")
+        }
+        guard timeOutSemaphore != .timedOut else { return nil }
+        
+        
         defer { semaphore.signal() }
         
         let retVal = try workItem(&content)
