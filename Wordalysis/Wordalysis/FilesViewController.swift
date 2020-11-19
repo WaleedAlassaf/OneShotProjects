@@ -13,7 +13,9 @@ class FilesViewController: UITableViewController {
     let textFinder = TextFinder()
     var counters: [WordCounter] = []
     var progressGroup = DispatchGroup()
-    var timer: DispatchSourceTimer?
+//    var timer: DispatchSourceTimer?
+    var displayLink: CADisplayLink?
+    
     
     var totalCount: Int {
         let counts = counters.map { (counter) -> Int in
@@ -41,7 +43,7 @@ class FilesViewController: UITableViewController {
         stopUpdating()
     }
     
-    func update(){
+    @objc func update(){
         navigationItem.title = "\(totalCount) Words"
         
         guard let visibleIndexPath = tableView.indexPathsForVisibleRows else { return }
@@ -55,17 +57,27 @@ class FilesViewController: UITableViewController {
     }
     
     func startUpdating(){
-        timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-        timer?.schedule(deadline: DispatchTime.now(),
-                        repeating: DispatchTimeInterval.milliseconds(16),
-                        leeway: .milliseconds(5))
-        timer?.setEventHandler(qos: .userInitiated, flags: [], handler: self.update)
-        timer?.resume()
+        
+
+        displayLink = CADisplayLink(target: self, selector: #selector(self.update))
+        displayLink?.add(to: .main, forMode: .common)
+        
+//        timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+//
+//        timer?.schedule(deadline: DispatchTime.now(),
+//                        repeating: DispatchTimeInterval.milliseconds(16),
+//                        leeway: .milliseconds(5))
+//
+//        timer?.setEventHandler(qos: .userInitiated, flags: [], handler: self.update)
+//        timer?.resume()
     }
     
     func stopUpdating(){
-        timer?.cancel()
-        timer = nil
+
+        displayLink?.invalidate()
+        
+        //        timer?.cancel()
+        //        timer = nil
         update()
     }
     
@@ -86,7 +98,6 @@ class FilesViewController: UITableViewController {
                     for text in texts {
                         let counter = WordCounter(text: text)
                         self.counters.append(counter)
-//                        counter.start()
                         self.progressGroup.enter()
                         counter.start {
                             self.progressGroup.leave()
@@ -94,11 +105,9 @@ class FilesViewController: UITableViewController {
                     }
 
                     self.tableView.reloadData()
-//                    self.navigationItem.title = "\(self.totalCount) Words"
-//                    self.presentCompletionAlert()
                     
                     self.progressGroup.notify(queue: DispatchQueue.main) {
-//                        self.tableView.reloadData()
+
                         self.navigationItem.title = "\(self.totalCount) words"
                         self.presentCompletionAlert()
                         self.stopUpdating()

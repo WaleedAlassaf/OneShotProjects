@@ -32,6 +32,7 @@ class WordCounter {
     
     func start(completion: @escaping ()-> Void) {
         print("Analyzing \"\(text.name)\"")
+        
         counterQueue.async { [weak self] in
             guard let self = self else { return }
             self.countWords()
@@ -41,8 +42,7 @@ class WordCounter {
             }
             
         }
-//        countWords()
-//        print("Finished  \"\(text.name)\"")
+
     }
     
     private func countWords() {
