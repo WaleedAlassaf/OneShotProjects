@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A671ABD31DDBE6C4007B19AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A671ABCE1DDBE6C4007B19AF /* AppDelegate.swift */; };
-		A671ABD41DDBE6C4007B19AF /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A671ABCF1DDBE6C4007B19AF /* FilesViewController.swift */; };
 		A671ABD61DDBE6C4007B19AF /* TextFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A671ABD11DDBE6C4007B19AF /* TextFinder.swift */; };
 		A671ABD71DDBE6C4007B19AF /* WordCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A671ABD21DDBE6C4007B19AF /* WordCounter.swift */; };
 		A671ABD91DDBE6DE007B19AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A671ABD81DDBE6DE007B19AF /* Assets.xcassets */; };
@@ -24,12 +23,13 @@
 		A671ABF11DDBE71E007B19AF /* War and Peace v5.txt in Resources */ = {isa = PBXBuildFile; fileRef = A671ABE81DDBE71E007B19AF /* War and Peace v5.txt */; };
 		A671ABF21DDBE71E007B19AF /* War and Peace.txt in Resources */ = {isa = PBXBuildFile; fileRef = A671ABE91DDBE71E007B19AF /* War and Peace.txt */; };
 		DC4553D22565476500098B5D /* Locked.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4553D12565476500098B5D /* Locked.swift */; };
+		DC75EB892567FCF100E0A88D /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC75EB872567FCF100E0A88D /* FilesViewController.swift */; };
+		DC75EB8A2567FCF100E0A88D /* WordListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC75EB882567FCF100E0A88D /* WordListTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A64803271D9F0C4D003CF770 /* Wordalysis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordalysis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A671ABCE1DDBE6C4007B19AF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Wordalysis/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		A671ABCF1DDBE6C4007B19AF /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilesViewController.swift; path = Wordalysis/FilesViewController.swift; sourceTree = SOURCE_ROOT; };
 		A671ABD01DDBE6C4007B19AF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		A671ABD11DDBE6C4007B19AF /* TextFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFinder.swift; path = Wordalysis/TextFinder.swift; sourceTree = SOURCE_ROOT; };
 		A671ABD21DDBE6C4007B19AF /* WordCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordCounter.swift; path = Wordalysis/WordCounter.swift; sourceTree = SOURCE_ROOT; };
@@ -46,6 +46,8 @@
 		A671ABE81DDBE71E007B19AF /* War and Peace v5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "War and Peace v5.txt"; path = "Texts/War and Peace v5.txt"; sourceTree = SOURCE_ROOT; };
 		A671ABE91DDBE71E007B19AF /* War and Peace.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "War and Peace.txt"; path = "Texts/War and Peace.txt"; sourceTree = SOURCE_ROOT; };
 		DC4553D12565476500098B5D /* Locked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locked.swift; sourceTree = "<group>"; };
+		DC75EB872567FCF100E0A88D /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilesViewController.swift; path = ../../../../../../../.Trash/ViewControllers/FilesViewController.swift; sourceTree = "<group>"; };
+		DC75EB882567FCF100E0A88D /* WordListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordListTableView.swift; path = ../../../../../../../.Trash/ViewControllers/WordListTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +96,8 @@
 				A671ABCE1DDBE6C4007B19AF /* AppDelegate.swift */,
 				A671ABD11DDBE6C4007B19AF /* TextFinder.swift */,
 				A671ABD21DDBE6C4007B19AF /* WordCounter.swift */,
-				A671ABCF1DDBE6C4007B19AF /* FilesViewController.swift */,
+				DC75EB872567FCF100E0A88D /* FilesViewController.swift */,
+				DC75EB882567FCF100E0A88D /* WordListTableView.swift */,
 				DC4553D12565476500098B5D /* Locked.swift */,
 				A6FF6FF7205631F100B8275C /* Supporting Files */,
 			);
@@ -201,8 +204,9 @@
 			files = (
 				A671ABD71DDBE6C4007B19AF /* WordCounter.swift in Sources */,
 				DC4553D22565476500098B5D /* Locked.swift in Sources */,
+				DC75EB892567FCF100E0A88D /* FilesViewController.swift in Sources */,
 				A671ABD61DDBE6C4007B19AF /* TextFinder.swift in Sources */,
-				A671ABD41DDBE6C4007B19AF /* FilesViewController.swift in Sources */,
+				DC75EB8A2567FCF100E0A88D /* WordListTableView.swift in Sources */,
 				A671ABD31DDBE6C4007B19AF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -59,7 +59,7 @@ class FilesViewController: UITableViewController {
     func startUpdating(){
         
 
-        displayLink = CADisplayLink(target: self, selector: #selector(self.update))
+        displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink?.add(to: .main, forMode: .common)
         
 //        timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
@@ -116,6 +116,16 @@ class FilesViewController: UITableViewController {
             }
         } catch {
             print("[ERR] (\(#file):\(#line)) - \(error)")
+        }
+    }
+    // MARK: - segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+            case "wordListing":
+                
+            default:
+                fatalError("Unknown segue identifier")
         }
     }
     

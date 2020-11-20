@@ -19,12 +19,11 @@ class Locked<Content> {
     func withLock<Return>(timeOut: DispatchTime = DispatchTime.now() + 10 , _ workItem: (inout Content) throws -> Return) rethrows -> Return? {
         
         let timeOutSemaphore = semaphore.wait(timeout: timeOut)
-        if timeOutSemaphore == .timedOut {
+        
+        guard timeOutSemaphore != .timedOut else {
             print("DEBUG: time out")
+            return nil
         }
-        guard timeOutSemaphore != .timedOut else { return nil }
-        
-        
         defer { semaphore.signal() }
         
         let retVal = try workItem(&content)

@@ -12,11 +12,12 @@ class WordCounter {
     
     private let counterQueue = DispatchQueue.global(qos: .userInitiated)
     
+    
     struct State {
         var totalCount = 0
         var wordList: [String:Int] = [:]
-    
     }
+    
     private var lockedState = Locked(State())
     private(set) var text: Text
     
@@ -31,6 +32,7 @@ class WordCounter {
     // MARK: - Counting
     
     func start(completion: @escaping ()-> Void) {
+        
         print("Analyzing \"\(text.name)\"")
         
         counterQueue.async { [weak self] in
@@ -42,9 +44,8 @@ class WordCounter {
             }
             
         }
-
     }
-    
+         
     private func countWords() {
         
         let textRange: Range<String.Index> = text.body.startIndex..<text.body.endIndex
@@ -52,7 +53,6 @@ class WordCounter {
         text.body.enumerateSubstrings(in: textRange, options: .byWords) {
             (substring, subRange, enclosingRange, stop) in
             guard let substring = substring else { return }
-           
             self.lockedState.withLock (timeOut: DispatchTime.now() + 10, { state in
                 
                 if let count = state.wordList[substring] {
