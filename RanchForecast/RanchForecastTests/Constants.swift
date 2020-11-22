@@ -31,7 +31,12 @@ enum Constants {
     
     static let okResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
     
+    static let notFoundResponse = HTTPURLResponse(url: url, statusCode: 404, httpVersion: nil, headerFields: nil)
+    
     static let jsonData = try! JSONSerialization.data(withJSONObject: courseDictionary)
+    
+    static let stringInvalidJSON = "Dummy invalid JSON"
+    static let InvalidJSON = Data(stringInvalidJSON.utf8)
     
     static let sessionConfiguration: URLSessionConfiguration = {
         let config = URLSessionConfiguration.ephemeral
