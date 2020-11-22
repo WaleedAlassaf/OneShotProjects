@@ -28,6 +28,7 @@ enum Constants {
                                                  "upcoming": [["start_date": dateString]] ]
     
     static let courseDictionary = ["courses": [validCourseDict]]
+    static let invalidCourseDictionary = ["Invalid": "Dictionary"]
     
     static let okResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
     
@@ -37,6 +38,10 @@ enum Constants {
     
     static let stringInvalidJSON = "Dummy invalid JSON"
     static let InvalidJSON = Data(stringInvalidJSON.utf8)
+    
+    
+    
+    
     
     static let sessionConfiguration: URLSessionConfiguration = {
         let config = URLSessionConfiguration.ephemeral

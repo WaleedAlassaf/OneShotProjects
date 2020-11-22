@@ -77,9 +77,11 @@ class ScheduleFetcher {
     }
     
     func parse(courseDictionary courseDict: [String:Any]) -> Course? {
-        let title = courseDict["title"] as! String
-        let urlString = courseDict["url"] as! String
-        let upcomingArray = courseDict["upcoming"] as! [[String:Any]]
+        
+        guard let title = courseDict["title"] as? String else {return nil}
+        guard let urlString = courseDict["url"] as? String else {return nil }
+        guard let upcomingArray = courseDict["upcoming"] as? [[String:Any]] else {return nil}
+        
         let nextUpcomingDict = upcomingArray.first!
         let nextStartDateString = nextUpcomingDict["start_date"] as! String
         

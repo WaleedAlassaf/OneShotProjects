@@ -30,6 +30,14 @@ class ScheduleFetcherTests: XCTestCase {
         XCTAssertEqual(course.url, Constants.url)
         XCTAssertEqual(course.nextStartDate, Constants.date)
     }
+    
+    
+    func testCreateCourseFromInvalidDictionary() {
+        let course: Course! = fetcher.parse(courseDictionary: Constants.invalidCourseDictionary)
+        
+        XCTAssertNotNil(course, "DEBUG: Found nil in course")
+    }
+    
 // MARK:- Improve Test Coverage of Web Service Responses Challenge.
     func testResultFromValidHTTPResponseAndNoData() {
         let result = fetcher.digest(data: nil, response: Constants.notFoundResponse, error: nil)
@@ -38,20 +46,18 @@ class ScheduleFetcherTests: XCTestCase {
             case .success(let course):
                 print("DEBUG: This case shouldn't fire. \(course)")
             case .failure(let error):
-                print("DEBUG: Failed as expected \(error)")
+                XCTFail("DEBUG: Failed as expected \(error)")
         }
     }
     
     func testResultFromValidHTTPResponseAndWithInvalidJSON () {
         let result = fetcher.digest(data: Constants.InvalidJSON, response: Constants.okResponse, error: nil)
         
-        XCTAssertNoThrow(result)
-        
         switch result {
             case .success(let courses):
                 print("This should never succeed \(courses)")
             case .failure(let error):
-                print("\(error)")
+                XCTFail("\(error)")
         }
         
     }
