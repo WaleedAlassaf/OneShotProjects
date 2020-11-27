@@ -13,6 +13,11 @@ enum PhotoError: Error {
 class PhotoStore {
     
     let imageStore = ImageStore()
+    let saveNotification = NotificationCenter.default
+    
+    init() {
+        saveNotification.addObserver(self, selector: #selector(saveChanges), name: Notification.Name("appEnteredBackground"), object: nil)
+    }
     
     let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Photorama" )
@@ -53,6 +58,15 @@ class PhotoStore {
         task.resume()
     }
     
+    @objc func saveChanges() {
+        do {
+            try self.persistentContainer.viewContext.save()
+            print("DEBUG: Saved all images")
+        } catch {
+            fatalError("DEBUG: Failed to save changes")
+        }
+    }
+    
     private func processPhotosRequest(data: Data?, error: Error?) -> Result<[Photo], Error> {
         
         guard let jsonData = data else {
@@ -85,6 +99,7 @@ class PhotoStore {
                         photo.photoID = flickrPhoto.photoID
                         photo.remoteURL = flickrPhoto.remoteURL
                         photo.dateTaken = flickrPhoto.dateTaken
+                        photo.views = flickrPhoto.views
                     }
                     return photo
                 }
