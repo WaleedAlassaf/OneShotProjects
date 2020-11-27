@@ -10,6 +10,7 @@ import XCTest
 @testable import RanchForecast
 
 
+
 var fetcher: ScheduleFetcher!
 
 class ScheduleFetcherTests: XCTestCase {
@@ -50,15 +51,15 @@ class ScheduleFetcherTests: XCTestCase {
         }
     }
     
-    func testResultFromValidHTTPResponseAndWithInvalidJSON () {
-        let result = fetcher.digest(data: Constants.InvalidJSON, response: Constants.okResponse, error: nil)
+    func testResultFromValidHTTPResponseAndWithInvalidJSON () throws {
+        let result = try fetcher.digest(data: Constants.InvalidJSON, response: Constants.okResponse, error: nil)
         
-        switch result {
-            case .success(let courses):
-                print("This should never succeed \(courses)")
-            case .failure(let error):
-                XCTFail("\(error)")
-        }
+//        switch result {
+//            case .success(let courses):
+//                print("This should never succeed \(courses)")
+//            case .failure(let error):
+//                XCTFail("\(error)")
+//        }
         
     }
     
